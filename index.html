@@ -8,6 +8,8 @@
 <body style="background: gray;">
     
     <script>
+
+        
         
         function getComputerChoice() {
             
@@ -16,20 +18,35 @@
 
             if(compChoice === 0){
                 retChoice = 'Rock'
-                console.log(compChoice)
             }else if (compChoice === 1){
                 retChoice = 'Paper'
-                console.log(compChoice)
             }else {
                 retChoice = 'Scissors'
-                console.log(compChoice)
             }
             
             return retChoice;
             
         }
 
+        function getHumanChoice(){
+
+            let choice = prompt('Rock, Paper or Scissors: ')
+            let numChoice
+
+            if(choice === 'Rock' || choice === 'ROCK' || choice === 'rock'){
+                numChoice = 1
+            }else if (choice === 'Paper' || choice === 'PAPER' || choice === 'paper'){
+                numChoice = 2
+            }else if (choice === 'Scissors' || choice === 'SCISSORS' || choice === 'scissors'){
+                numChoice = 3
+            }
+
+            return numChoice
+
+        }
+
         console.log(getComputerChoice())
+        console.log(getHumanChoice())
 
     </script>
 

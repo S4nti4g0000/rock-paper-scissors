@@ -15,14 +15,13 @@
         function getComputerChoice() {
             
             let compChoice = Math.floor(Math.random() * 3);
-            let retChoice
 
             if(compChoice === 0){
-                console.log(retChoice = 'Rock')
+                console.log('Computer says: Rock')
             }else if (compChoice === 1){
-                console.log(retChoice = 'Paper')
+                console.log('Computer says: Paper')
             }else {
-                console.log(retChoice = 'Scissors')
+                console.log('Computer says: Scissors')
             }
             
             return compChoice;
@@ -35,11 +34,14 @@
             let numChoice
 
             if(choice === 'rock'){
-                numChoice = 1
+                numChoice = 0
+                console.log('Human says: Rock')
             }else if (choice === 'paper'){
-                numChoice = 2
+                numChoice = 1
+                console.log('Human says: Paper')
             }else if (choice === 'scissors'){
-                numChoice = 3
+                numChoice = 2
+                console.log('Human says: Scissors')
             }
 
             return numChoice
@@ -48,12 +50,37 @@
 
         function playRound(humanChoice, computerChoice){
 
+            if(humanChoice === computerChoice){
+                console.log('It\'s a draw!')
+            }
 
+
+            if(humanChoice === 0 && computerChoice === 1){
+                computerScore++
+                console.log('Paper beats rock!\n')
+            }else if(humanChoice === 0 && computerChoice === 2){
+                humanScore++
+                console.log('Rock beats scissors\n')
+            }else if(humanChoice === 1 && computerChoice === 0){
+                humanScore++
+                console.log('Paper beats rock!\n')
+            }else if(humanChoice === 1 && computerChoice === 2){
+                computerScore++
+                console.log('Scissors beat paper!\n')
+            }else if(humanChoice === 2 && computerChoice === 0){
+                computerScore++
+                console.log('Rock beats scissors!\n')
+            }else if (humanChoice === 2 && computerChoice === 1){
+                humanScore++
+                console.log('Scissors beat paper!\n')
+            }
+
+            console.log('Computer score: ' + computerScore + '\nHuman Score: ' + humanScore)
 
         }
 
         const humanSelection = getHumanChoice()
-        const computerSelection = getHumanChoice()
+        const computerSelection = getComputerChoice()
 
         playRound(humanSelection, computerSelection)
 

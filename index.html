@@ -9,7 +9,8 @@
     
     <script>
 
-        
+        let humanScore = 0
+        let computerScore = 0
         
         function getComputerChoice() {
             
@@ -17,27 +18,27 @@
             let retChoice
 
             if(compChoice === 0){
-                retChoice = 'Rock'
+                console.log(retChoice = 'Rock')
             }else if (compChoice === 1){
-                retChoice = 'Paper'
+                console.log(retChoice = 'Paper')
             }else {
-                retChoice = 'Scissors'
+                console.log(retChoice = 'Scissors')
             }
             
-            return retChoice;
+            return compChoice;
             
         }
 
         function getHumanChoice(){
 
-            let choice = prompt('Rock, Paper or Scissors: ')
+            let choice = prompt('Rock, Paper or Scissors: ').toLowerCase()
             let numChoice
 
-            if(choice === 'Rock' || choice === 'ROCK' || choice === 'rock'){
+            if(choice === 'rock'){
                 numChoice = 1
-            }else if (choice === 'Paper' || choice === 'PAPER' || choice === 'paper'){
+            }else if (choice === 'paper'){
                 numChoice = 2
-            }else if (choice === 'Scissors' || choice === 'SCISSORS' || choice === 'scissors'){
+            }else if (choice === 'scissors'){
                 numChoice = 3
             }
 
@@ -45,8 +46,16 @@
 
         }
 
-        console.log(getComputerChoice())
-        console.log(getHumanChoice())
+        function playRound(humanChoice, computerChoice){
+
+
+
+        }
+
+        const humanSelection = getHumanChoice()
+        const computerSelection = getHumanChoice()
+
+        playRound(humanSelection, computerSelection)
 
     </script>
 

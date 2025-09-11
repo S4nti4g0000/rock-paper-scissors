@@ -75,14 +75,37 @@
                 console.log('Scissors beat paper!\n')
             }
 
-            console.log('Computer score: ' + computerScore + '\nHuman Score: ' + humanScore)
+            console.log(
+            'Computer score: ' + computerScore + 
+            '\nHuman Score: ' + humanScore + 
+            '\n----------------------------\n\n'
+            )
+
+        }
+        
+
+        function playGame(){
+
+            let roundNumber = 0
+
+            do{
+                roundNumber++
+                const humanSelection = getHumanChoice()
+                const computerSelection = getComputerChoice()
+                playRound(humanSelection, computerSelection)                
+            }while(roundNumber < 5)            
+
+            if(humanScore === computerScore){
+                console.log('Nobody wins, it\'s a draw!')
+            }else if(humanScore > computerScore){
+                console.log('Human wins!')
+            }else{
+                console.log('Computer wins!')
+            }
 
         }
 
-        const humanSelection = getHumanChoice()
-        const computerSelection = getComputerChoice()
-
-        playRound(humanSelection, computerSelection)
+        playGame()
 
     </script>
 

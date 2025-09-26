@@ -6,6 +6,18 @@
     <title>Document</title>
 </head>
 <body style="background: gray;">
+
+    <div id="buttons">
+        <button class="rock-button">Rock</button>
+        <button class="paper-button">Paper</button>
+        <button class="scissors-button">Scissors</button>
+    </div>
+
+    <div id="comp-choice"></div>
+
+    <div id="result"></div>
+    <div id="score"></div>
+    
     
     <script>
 
@@ -14,7 +26,7 @@
         
         function getComputerChoice() {
             
-            let compChoice = Math.floor(Math.random() * 3);
+            const compChoice = Math.floor(Math.random() * 3);
 
             if(compChoice === 0){
                 console.log('Computer says: Rock')
@@ -28,9 +40,8 @@
             
         }
 
-        function getHumanChoice(){
+        function getHumanChoice(choice){
 
-            let choice = prompt('Rock, Paper or Scissors: ').toLowerCase()
             let numChoice
 
             if(choice === 'rock'){
@@ -84,7 +95,16 @@
         }
         
 
-        function playGame(){
+        
+
+        playGame()
+
+    </script>
+
+</body>
+</html>
+
+<!--function playGame(){
 
             let roundNumber = 0
 
@@ -104,10 +124,4 @@
             }
 
         }
-
-        playGame()
-
-    </script>
-
-</body>
-</html>
+-->

@@ -8,12 +8,13 @@
 <body style="background: gray;">
 
     <div id="buttons">
-        <button class="rock-button">Rock</button>
-        <button class="paper-button">Paper</button>
-        <button class="scissors-button">Scissors</button>
+        <button id="rock-button">Rock</button>
+        <button id="paper-button">Paper</button>
+        <button id="scissors-button">Scissors</button>
     </div>
 
     <div id="comp-choice"></div>
+    <div id="player-choice"></div>
 
     <div id="result"></div>
     <div id="score"></div>
@@ -23,6 +24,27 @@
 
         let humanScore = 0
         let computerScore = 0
+
+        const dispHuman = document.getElementById("#player-choice")
+        const buttons = document.querySelectorAll("button")
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", (event) =>{
+                let target = event.target
+                
+                switch(target.id) {
+                    case "rock-button":
+                        console.log('rock')
+                        break;
+                    case "paper-button":
+                        console.log('paper')
+                        break;
+                    case "scissors-button":
+                        console.log('scissors')
+                        break;
+                }
+            })
+        })
         
         function getComputerChoice() {
             
@@ -97,7 +119,7 @@
 
         
 
-        playGame()
+        
 
     </script>
 
@@ -123,5 +145,7 @@
                 console.log('Computer wins!')
             }
 
-        }
+    }
+
+    playGame()
 -->

@@ -7,17 +7,19 @@
 </head>
 <body style="background: gray;">
 
+    
+
+    <p id="comp-choice">Computer says: </p>
+    <p id="player-choice">Human says: </p>
+
+    <div id="result"></div>
+    <div id="score"></div>
+
     <div id="buttons">
         <button id="rock-button">Rock</button>
         <button id="paper-button">Paper</button>
         <button id="scissors-button">Scissors</button>
     </div>
-
-    <div id="comp-choice"></div>
-    <div id="player-choice"></div>
-
-    <div id="result"></div>
-    <div id="score"></div>
     
     
     <script>
@@ -25,7 +27,7 @@
         let humanScore = 0
         let computerScore = 0
 
-        const dispHuman = document.getElementById("#player-choice")
+        
         const buttons = document.querySelectorAll("button")
 
         buttons.forEach((button) => {
@@ -34,13 +36,13 @@
                 
                 switch(target.id) {
                     case "rock-button":
-                        console.log('rock')
+                        getHumanChoice('rock')                        
                         break;
                     case "paper-button":
-                        console.log('paper')
+                        getHumanChoice('paper')                        
                         break;
                     case "scissors-button":
-                        console.log('scissors')
+                        getHumanChoice('scissors')                        
                         break;
                 }
             })
@@ -48,14 +50,15 @@
         
         function getComputerChoice() {
             
-            const compChoice = Math.floor(Math.random() * 3);
+            let compChoice = Math.floor(Math.random() * 3);
+            const compDisplay = document.getElementById("comp-choice")
 
             if(compChoice === 0){
-                console.log('Computer says: Rock')
+                compDisplay.textContent = 'Computer says: Rock'
             }else if (compChoice === 1){
-                console.log('Computer says: Paper')
+                compDisplay.textContent = 'Computer says: Paper'
             }else {
-                console.log('Computer says: Scissors')
+                compDisplay.textContent = 'Computer says: Scissors'
             }
             
             return compChoice;
@@ -65,16 +68,17 @@
         function getHumanChoice(choice){
 
             let numChoice
+            const dispHuman = document.getElementById("player-choice")
 
             if(choice === 'rock'){
-                numChoice = 0
-                console.log('Human says: Rock')
+                numChoice = 0 
+                dispHuman.textContent = 'Human says: Rock'               
             }else if (choice === 'paper'){
-                numChoice = 1
-                console.log('Human says: Paper')
+                numChoice = 1      
+                dispHuman.textContent = 'Human says: Paper'          
             }else if (choice === 'scissors'){
-                numChoice = 2
-                console.log('Human says: Scissors')
+                numChoice = 2    
+                dispHuman.textContent = 'Human says: Scissors'            
             }
 
             return numChoice

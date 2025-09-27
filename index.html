@@ -13,14 +13,17 @@
     <p id="player-choice">Human says: </p>
 
     <div id="result"></div>
-    <div id="score"></div>
-
+    
     <div id="buttons">
         <button id="rock-button">Rock</button>
         <button id="paper-button">Paper</button>
         <button id="scissors-button">Scissors</button>
     </div>
-    
+
+    <div id="score">
+        <p id="hScore">Human Score: </p>
+        <p id="cScore">Computer Score: </p>
+    </div>
     
     <script>
 
@@ -29,6 +32,13 @@
 
         
         const buttons = document.querySelectorAll("button")
+        const compDisplay = document.getElementById("comp-choice")
+        const dispHuman = document.getElementById("player-choice")
+        const res = document.getElementById("score").querySelectorAll("p")
+        const dispResult = [...res]
+        
+        let humanCh
+        let computerChoice
 
         buttons.forEach((button) => {
             button.addEventListener("click", (event) =>{
@@ -36,13 +46,16 @@
                 
                 switch(target.id) {
                     case "rock-button":
-                        getHumanChoice('rock')                        
+                        humanCh = getHumanChoice('rock') 
+                        playRound(humanCh)  
                         break;
                     case "paper-button":
-                        getHumanChoice('paper')                        
+                        humanCh = getHumanChoice('paper')
+                        playRound(humanCh)                                               
                         break;
                     case "scissors-button":
-                        getHumanChoice('scissors')                        
+                        humanCh = getHumanChoice('scissors') 
+                        playRound(humanCh)                         
                         break;
                 }
             })
@@ -51,7 +64,7 @@
         function getComputerChoice() {
             
             let compChoice = Math.floor(Math.random() * 3);
-            const compDisplay = document.getElementById("comp-choice")
+            
 
             if(compChoice === 0){
                 compDisplay.textContent = 'Computer says: Rock'
@@ -64,11 +77,13 @@
             return compChoice;
             
         }
+        
+        
 
         function getHumanChoice(choice){
 
             let numChoice
-            const dispHuman = document.getElementById("player-choice")
+            
 
             if(choice === 'rock'){
                 numChoice = 0 
@@ -85,7 +100,11 @@
 
         }
 
-        function playRound(humanChoice, computerChoice){
+        
+
+        function playRound(humanChoice,){
+
+            computerChoice = getComputerChoice()
 
             if(humanChoice === computerChoice){
                 console.log('It\'s a draw!')
@@ -94,22 +113,22 @@
 
             if(humanChoice === 0 && computerChoice === 1){
                 computerScore++
-                console.log('Paper beats rock!\n')
+                dispResult[1].textContent = 'Computer Score: ' + computerScore 
             }else if(humanChoice === 0 && computerChoice === 2){
                 humanScore++
-                console.log('Rock beats scissors\n')
+                dispResult[0].textContent = 'Human Score: ' + humanScore 
             }else if(humanChoice === 1 && computerChoice === 0){
                 humanScore++
-                console.log('Paper beats rock!\n')
+                dispResult[0].textContent = 'Human Score: ' + humanScore 
             }else if(humanChoice === 1 && computerChoice === 2){
                 computerScore++
-                console.log('Scissors beat paper!\n')
+                dispResult[1].textContent = 'Computer Score: ' + computerScore 
             }else if(humanChoice === 2 && computerChoice === 0){
                 computerScore++
-                console.log('Rock beats scissors!\n')
+                dispResult[1].textContent = 'Computer Score: ' + computerScore 
             }else if (humanChoice === 2 && computerChoice === 1){
                 humanScore++
-                console.log('Scissors beat paper!\n')
+                dispResult[0].textContent = 'Human Score: ' + humanScore 
             }
 
             console.log(

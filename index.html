@@ -44,25 +44,26 @@
         let computerChoice
         let roundNumber = 0
 
-        buttons.forEach((button) => {
+        buttons.forEach((button) => {            
             button.addEventListener("click", (event) =>{
-                let target = event.target
-                
-                switch(target.id) {
-                    case "rock-button":
-                        humanCh = getHumanChoice('rock') 
-                        playRound(humanCh)  
-                        break;
-                    case "paper-button":
-                        humanCh = getHumanChoice('paper')
-                        playRound(humanCh)                                               
-                        break;
-                    case "scissors-button":
-                        humanCh = getHumanChoice('scissors') 
-                        playRound(humanCh)                         
-                        break;
+            let target = event.target
+            
+            switch(target.id) {
+                case "rock-button":
+                    humanCh = getHumanChoice('rock') 
+                    playRound(humanCh)  
+                    break;
+                case "paper-button":
+                    humanCh = getHumanChoice('paper')
+                    playRound(humanCh)                                               
+                    break;
+                case "scissors-button":
+                    humanCh = getHumanChoice('scissors') 
+                    playRound(humanCh)                         
+                    break;
                 }
             })
+                       
         })
         
         function getComputerChoice() {
@@ -88,17 +89,19 @@
 
             let numChoice
             
-
-            if(choice === 'rock'){
-                numChoice = 0 
-                dispHuman.textContent = 'Human says: Rock'               
-            }else if (choice === 'paper'){
-                numChoice = 1      
-                dispHuman.textContent = 'Human says: Paper'          
-            }else if (choice === 'scissors'){
-                numChoice = 2    
-                dispHuman.textContent = 'Human says: Scissors'            
+            if(roundNumber < 5){
+                if(choice === 'rock'){
+                    numChoice = 0 
+                    dispHuman.textContent = 'Human says: Rock'               
+                }else if (choice === 'paper'){
+                    numChoice = 1      
+                    dispHuman.textContent = 'Human says: Paper'          
+                }else if (choice === 'scissors'){
+                    numChoice = 2    
+                    dispHuman.textContent = 'Human says: Scissors'            
+                }
             }
+            
 
             return numChoice
 
@@ -106,12 +109,11 @@
 
         
 
-        function playRound(humanChoice,){ 
-
-            computerChoice = getComputerChoice()
+        function playRound(humanChoice){ 
             
             if(roundNumber < 5){
                 roundNumber++
+                computerChoice = getComputerChoice()
 
                 if(humanChoice === computerChoice){
                     dispResult[2].textContent = 'Round result: No one wins - It\'s a draw!'

@@ -12,7 +12,7 @@
     <p id="comp-choice">Computer says: </p>
     <p id="player-choice">Human says: </p>
 
-    <div id="result"></div>
+    
     
     <div id="buttons">
         <button id="rock-button">Rock</button>
@@ -21,8 +21,10 @@
     </div>
 
     <div id="score">
-        <p id="hScore">Human Score: </p>
-        <p id="cScore">Computer Score: </p>
+        <p id="hScore">Human Score: 0</p>
+        <p id="cScore">Computer Score: 0</p>
+
+        <p id="result">Round result: </p>
     </div>
     
     <script>
@@ -37,8 +39,10 @@
         const res = document.getElementById("score").querySelectorAll("p")
         const dispResult = [...res]
         
+        
         let humanCh
         let computerChoice
+        let roundNumber = 0
 
         buttons.forEach((button) => {
             button.addEventListener("click", (event) =>{
@@ -102,44 +106,57 @@
 
         
 
-        function playRound(humanChoice,){
+        function playRound(humanChoice,){ 
 
             computerChoice = getComputerChoice()
+            
+            if(roundNumber < 5){
+                roundNumber++
 
-            if(humanChoice === computerChoice){
-                console.log('It\'s a draw!')
+                if(humanChoice === computerChoice){
+                    dispResult[2].textContent = 'Round result: No one wins - It\'s a draw!'
+                }
+
+                if(humanChoice === 0 && computerChoice === 1){
+                    computerScore++
+                    dispResult[1].textContent = 'Computer Score: ' + computerScore 
+                    dispResult[2].textContent = 'Round result: Computer Wins - Paper beats rock!'
+                }else if(humanChoice === 0 && computerChoice === 2){
+                    humanScore++
+                    dispResult[0].textContent = 'Human Score: ' + humanScore 
+                    dispResult[2].textContent = 'Round result: Human Wins - Rock beats scissors!'
+                }else if(humanChoice === 1 && computerChoice === 0){
+                    humanScore++
+                    dispResult[0].textContent = 'Human Score: ' + humanScore 
+                    dispResult[2].textContent = 'Round result: Human Wins - Paper beats rock!'
+                }else if(humanChoice === 1 && computerChoice === 2){
+                    computerScore++
+                    dispResult[1].textContent = 'Computer Score: ' + computerScore 
+                    dispResult[2].textContent = 'Round result: Computer Wins - Scissors beat paper!'
+                }else if(humanChoice === 2 && computerChoice === 0){
+                    computerScore++
+                    dispResult[1].textContent = 'Computer Score: ' + computerScore 
+                    dispResult[2].textContent = 'Round result: Computer Wins - Rock beats scissors!'
+                }else if (humanChoice === 2 && computerChoice === 1){
+                    humanScore++
+                    dispResult[0].textContent = 'Human Score: ' + humanScore 
+                    dispResult[2].textContent = 'Round result: Human Wins - Scissors beat paper!'
+                }
+            } 
+            
+            if(roundNumber >= 5){                
+                if(humanScore === computerScore){
+                dispResult[2].textContent = 'GAME RESULT: Nobody wins! It\'s a draw :o'
+                }else if(humanScore > computerScore){
+                    dispResult[2].textContent = 'GAME RESULT: Human wins!'
+                }else{
+                    dispResult[2].textContent = 'GAME RESULT: Computer wins wins!'
+                }
             }
-
-
-            if(humanChoice === 0 && computerChoice === 1){
-                computerScore++
-                dispResult[1].textContent = 'Computer Score: ' + computerScore 
-            }else if(humanChoice === 0 && computerChoice === 2){
-                humanScore++
-                dispResult[0].textContent = 'Human Score: ' + humanScore 
-            }else if(humanChoice === 1 && computerChoice === 0){
-                humanScore++
-                dispResult[0].textContent = 'Human Score: ' + humanScore 
-            }else if(humanChoice === 1 && computerChoice === 2){
-                computerScore++
-                dispResult[1].textContent = 'Computer Score: ' + computerScore 
-            }else if(humanChoice === 2 && computerChoice === 0){
-                computerScore++
-                dispResult[1].textContent = 'Computer Score: ' + computerScore 
-            }else if (humanChoice === 2 && computerChoice === 1){
-                humanScore++
-                dispResult[0].textContent = 'Human Score: ' + humanScore 
-            }
-
-            console.log(
-            'Computer score: ' + computerScore + 
-            '\nHuman Score: ' + humanScore + 
-            '\n----------------------------\n\n'
-            )
 
         }
         
-
+        
         
 
         
@@ -148,27 +165,3 @@
 
 </body>
 </html>
-
-<!--function playGame(){
-
-            let roundNumber = 0
-
-            do{
-                roundNumber++
-                const humanSelection = getHumanChoice()
-                const computerSelection = getComputerChoice()
-                playRound(humanSelection, computerSelection)                
-            }while(roundNumber < 5)            
-
-            if(humanScore === computerScore){
-                console.log('Nobody wins, it\'s a draw!')
-            }else if(humanScore > computerScore){
-                console.log('Human wins!')
-            }else{
-                console.log('Computer wins!')
-            }
-
-    }
-
-    playGame()
--->
